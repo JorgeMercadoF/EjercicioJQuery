@@ -1,0 +1,113 @@
+﻿<!--     Entrada de registro.
+
+    Tenemos que hacer un formulario con dos trozos.
+    Uno de ellos seran los datos personales:
+        - Nombre de 65 caracteres, igual que la direccion, password y telefono.
+        - La direccion tiene que tener mas de 5 caracteres
+        - el email debe ser valido
+        - El password debe ser fuerte
+        - el telefono es el unico que no es requerido
+        - la ciudad (nos han comentado que se repiten muy a menudo las ciudades de Madrid, Barcelona, Sevilla y Zaragoza)
+    El otro trozo son los Datos Sociales
+        - Pagina de Facebook personal
+        - Pagina de Twitter personal
+        - Edad: Rango de 18 a 99
+        - Plato favorito:
+            Primeros:
+                Lentejas
+                Garbanzos
+                Sopa
+                Judias
+            Segundos:
+                San Jacobos
+                Atun
+                Sardina
+            Postres:
+                Chocolate
+                Nata Montada
+    Si la edad es mayor de 18 y no tiene telefono alertar de un error.
+    Marcar los campos obligatorios para validar el formulario
+    Se puede usar HTML o JavaScript
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Entrada de Registro</title>
+    <link href="StyleSheet1.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <form name="formulario" method="post">
+        <fieldset>
+            <legend>Datos personales</legend>
+            <input type="text" id="nombre" name="nombre" placeholder="Introduzca el nombre" required="required" maxlength="65" />
+            <label id="edadVal" name=edadVal>Edad: 50</label>
+            <input type="range" id="edad" name="edad" placeholder="Introduzca la edad" required="required" min="18" max="99" />
+            <input type="text" id="direccion" name="direccion" placeholder="Introduzca la direccion" required="required" maxlength="65" />
+            <input type="email" id="mail" name="mail" placeholder="Intorduzca el eMail" required="required" />
+            <input type="tel" id="phono" name="phono" placeholder="Introduzca su telefono" maxlength="65" />
+            <input type="text" id="ciudad" name="ciudad" list="ciudadesList" placeholder="Introduzca su ciudad" required="required" />
+            <datalist id="ciudadesList">
+                <option value="Madrid"></option>
+                <option value="Barcelona"></option>
+                <option value="Sevilla"></option>
+                <option value="Zaragoza"></option>
+            </datalist>
+            <input type="password" id="pass" name="pass" placeholder="Introduzca su password" required="required" maxlength="65" />
+        </fieldset>
+        <fieldset>
+            <legend>Datos sociales</legend>
+            <input type="url" id="facebook" name="facebook" placeholder="Pagina personal de facebook" />
+            <input type="url" id="twitter" name="twitter" placeholder="Pagina personal de twitter" />
+            <label id="plato" name="plato">Plato favorito: </label>
+            <select id="platofav" name="platofav">
+                <optgroup label="Primeros">
+                    <option value="lentejas">Lentejas</option>
+                    <option value="garbanzos">Garbanzos</option>
+                    <option value="sopa">Sopa</option>
+                    <option value="judias">Judias</option>
+                </optgroup>
+                <optgroup label="Segundos">
+                    <option value="jacobos">San Jacabos</option>
+                    <option value="atun">Atun</option>
+                    <option value="sardinas">Sardinas</option>
+                </optgroup>
+                <optgroup label="Postres">
+                    <option value="chocolate">Chocolate</option>
+                    <option value="nata">Nata montada</option>
+                </optgroup>
+            </select>
+        </fieldset>
+        <input type="submit" id="enviar" name="enviar" value="Enviar" onsubmit="function(event) { validacion(event); }"/>
+    </form>
+
+    <!-- Cargamos Libreria JQuery -->
+    <script src="http://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
+    <!-- FIN Cargamos Libreria JQuery -->
+    <!-- Ejecutamos JQuery -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#edad").change(
+                function () {
+                    var edad = parseInt($("#edad").val());
+                    //La siguiente linea es JavaScript
+                    document.getElementById("edadVal").innerHTML = "Edad: " + edad;
+                })
+
+           
+
+        });
+
+        function validacion(event) {
+            event.preventDefault(); //Corta el Submit
+        }
+
+    </script>
+    <!-- FIN Ejecutamos JQuery -->
+
+</body>
+</html>

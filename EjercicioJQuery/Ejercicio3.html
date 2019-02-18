@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Consumir RestFull con AJAX</title>
+</head>
+<body>
+    <div>
+        <label id="elementoLabel" name="elementoLabel">Seleccione el Id del museo a consultar: </label>
+        <input type="range" id="idRange" name="idRange" min="1" max="166" />
+        <label id="idMuseo" name="idMuseo">Id: 84</label>
+        <input type="button" id="info" name="info" value="Informacion" />
+    </div>
+    <div>
+        <textArea id="contenido" name="contenido" cols="110" rows="20"></textArea>
+    </div>
+
+
+
+    <!-- Cargamos Libreria JQuery -->
+    <script src="http://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
+    <!-- FIN Cargamos Libreria JQuery -->
+    <!-- Ejecutamos JQuery -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#idRange").change(
+                function () {
+                    var id = parseInt($("#idRange").val());
+                    //La siguiente linea es JavaScript
+                    document.getElementById("idMuseo").innerHTML = "Id: " + id;
+                })
+
+            $("#info").click(
+                function () {
+                    $.ajax({
+                        url: "https://museowebapp.azurewebsites.net/api/MuseosAPI/" + $("#idRange").val(),
+                        dataType: "xml",
+                        success: function (data) {
+                            var $data = $(data);
+                            var desc = $data.find("descripcion").text();
+                            $("#contenido").val(desc);
+                        }
+                    })
+                })
+        });
+    </script>
+</body>
+</html>

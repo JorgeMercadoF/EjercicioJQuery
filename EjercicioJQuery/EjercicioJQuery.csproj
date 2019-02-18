@@ -68,6 +68,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Ejercicio1.html" />
+    <Content Include="Ejercicio2.html" />
+    <Content Include="Ejercicio3.html" />
+    <Content Include="StyleSheet1.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
