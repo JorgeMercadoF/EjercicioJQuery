@@ -12,7 +12,9 @@
         <input type="button" id="info" name="info" value="Informacion" />
     </div>
     <div>
-        <textArea id="contenido" name="contenido" cols="110" rows="20"></textArea>
+        <input type="text" id="titulo" name="titulo" />
+        <input type="datetime" id="ultimaModificacion" name="ultimaModificacion" />
+        <textArea id="descripcion" name="descripcion" cols="110" rows="20"></textArea>
     </div>
 
 
@@ -41,7 +43,11 @@
                         success: function (data) {
                             var $data = $(data);
                             var desc = $data.find("descripcion").text();
-                            $("#contenido").val(desc);
+                            var tit = $data.find("titulo").text();
+                            var fecha = $data.find("ultimaModificacion").text();
+                            $("#titulo").val(tit);
+                            $("#ultimaModificacion").val(fecha);
+                            $("#descripcion").val(desc);
                         }
                     })
                 })
