@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Ejercicio1.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
